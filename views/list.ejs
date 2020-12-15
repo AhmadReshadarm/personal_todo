@@ -1,0 +1,56 @@
+<%- include("header") -%>
+
+
+<div class="box" id="heading">
+  <h1><%=  kindOfDay %></h1>
+</div>
+  <div class="title-wrapper"><h1 style="color: #534171;">Personal Todo list</h1></div>
+<div class="box">
+  <%  theItem.forEach(function(itemEach){ %>
+
+  <form action="/delete" method="post">
+    <div class="item">
+       <% if(itemEach.name !== ""){ %> 
+         <input type="checkbox" name="checkbox2nd" value="<%= itemEach.name %>" onchange="this.form.submit()">
+          <p> <%= itemEach.name %> </p>
+        <% } %>  
+    </div>
+  </form>
+  <% });%>
+  <form class="items" action="/" method="POST">
+    <input  type="text" name="entry" placeholder="Add New Item" autofocus autocomplete="off">
+    <button type="submit" >+</button>
+  </form>
+</div>
+
+
+
+
+
+<div class="box" id="heading">
+  <h1>OR</h1>
+  <h1>Create a new list</h1>
+</div>
+
+
+<div class="box">
+
+
+<%  pageList.forEach(function(page){ %>
+<form action="/delete" method="post">
+  <div class="item">
+    <input type="checkbox" name="checkbox" value="<%= page.name %>" onchange="this.form.submit()">
+    <a href="/<%= page.name %>"  > <%= page.name %> </a>
+  </div>
+  <input type="hidden" name="page" value="<%=page.name %>" > </input>
+</form>
+<% });%>
+</div>
+
+
+<form class="items" action="/newpage" method="POST">
+  <input class="newpageInput" type="text" name="pageNameEntry" placeholder="New list name" autofocus autocomplete="off">
+  <button class="secondBtn" type="submit" >+</button>
+</form>
+
+<%- include("footer") -%>

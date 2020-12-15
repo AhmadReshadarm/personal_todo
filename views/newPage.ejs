@@ -1,0 +1,27 @@
+<%- include("header") -%>
+
+
+
+<div class="box" id="heading">
+  <a href="/" class="fas fa-arrow-left arrow"></a>
+  <h1> <%=  kindOfDay %></h1>
+</div>
+
+<div class="box">
+  <%  theItem.forEach(function(itemEach){ %>
+
+  <form action="/delete" method="post">
+    <div class="item">
+      <input type="checkbox" name="checkbox2nd" value="<%= itemEach.name %>" onchange="this.form.submit()">
+      <p> <%=itemEach.name%> </p>
+    </div>
+    <input type="hidden" name="listName" value="<%= kindOfDay %>"></input>
+  </form>
+  <% });%>
+  <form class="items" action="/" method="POST">
+    <input  type="text" name="entry" placeholder="Add New Item" autofocus autocomplete="off">
+    <button type="submit" name="list" value="<%= kindOfDay %>">+</button>
+  </form>
+</div>
+
+<%- include("footer") -%>
